@@ -96,7 +96,10 @@ main (int argc, char *argv[])
   ApplicationContainer clientA = echoC.Install (n.Get (1));
   clientA.Start (Seconds (2.0));
   clientA.Stop (Seconds (15.0));
-
+  
+  AsciiTraceHelper ascii;
+  pointToPoint.EnableAsciiAll (ascii.CreateFileStream ("myfirst.tr"));
+  pointToPoint.EnablePcapAll ("myfirst"); 
   Simulator::Run ();
   Simulator::Destroy ();
   return 0;
